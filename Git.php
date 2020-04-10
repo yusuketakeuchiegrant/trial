@@ -677,7 +677,6 @@ class GitRepo {
      */
     public function reset($commit, $option='mixed') {
         $command = sprintf('reset --%s $s', $option, $commit);
-        $command = escapeshellarg($command);
         return $this->run($command);
     }
 
