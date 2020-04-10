@@ -44,26 +44,22 @@ class GitAutoMerger
             throw new Exception(sprintf('The branch %s not found', $remote_branch));
         }
 
-        // Checkout sale_dev to merge.
+        // Checkout sale_dev
         $repo->checkout($sale_dev);
 
         // Merge $branch to sale_dev
         $result = false;
-        $merge_result = '';
         try {
-            $merge_result = $repo->merge($branch);
+            $repo->merge($branch);
             $result = true;
-            var_dump('success', $merge_result);
         } catch(Exception $e) {
-            var_dump('failure', $merge_result);
             $repo->reset('HEAD', 'hard');
             $result = false;
+        } finally {
+            // Finally, delete $branch
+            $repo->delete_branch($branch, $force=true);
+            return $result;
         }
-
-        // Finally, delete $branch
-        $repo->delete_branch($branch, $force=true);
-
-        return $result;
     }    
 }
 
