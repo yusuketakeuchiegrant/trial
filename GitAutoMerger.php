@@ -51,7 +51,7 @@ class GitAutoMerger
         try {
             $merge_result = $repo->merge($branch);
         } catch(Exception $e) {
-            $repo->reset();
+            $repo->reset('hard', 'HEAD');
         }
         var_dump($merge_result);
         $result = false;
