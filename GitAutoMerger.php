@@ -22,7 +22,7 @@ class GitAutoMerger
                 if (!in_array($sale_dev, $remote_branches)) {
                     throw new Exception(sprintf('The branch %s not found', $sale_dev));
                 }
-                // TODO: Checkout sale_dev from remote branch
+                $repo->checkout_remote($sale_dev);
             }
         }
 

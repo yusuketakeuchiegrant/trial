@@ -569,6 +569,16 @@ class GitRepo {
         return $this->run("checkout " . escapeshellarg($branch));
     }
 
+    /**
+     * @param string $branch branch name
+     * @param string $option
+     */
+    public function checkout_remote($branch) {
+        $command = sprintf('checkout -b %s origin/$s', $branch, $branch);
+        $command = escapeshellarg($command);
+        return $this->run($command);
+    }
+
 
     /**
      * Runs a `git merge` call
