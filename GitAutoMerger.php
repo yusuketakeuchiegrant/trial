@@ -64,22 +64,6 @@ class GitAutoMerger
         $repo->delete_branch($branch, $force=true);
 
         return $result;
-
-        /**
-         * とりあえずsale_devにcheckout したほうが良さそう
-         * $branch is in remote branches
-         * checkout remote branch $branch
-         * checkout [remote] branch_sale_dev
-         * merge($branch)
-         *  commit
-         *  push
-         *  rm
-         *  return true
-         * 
-         *  reset hard
-         *  rm
-         *  return false
-         */
     }    
 }
 
