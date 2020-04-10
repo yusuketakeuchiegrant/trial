@@ -46,7 +46,7 @@ class GitAutoMerger
 
         // Checkout sale_dev and update.
         $repo->checkout($sale_dev);
-        //$repo->pull('origin', $sale_dev);
+        $repo->pull('origin', $sale_dev);
 
         // Merge $branch to sale_dev
         $result = false;
