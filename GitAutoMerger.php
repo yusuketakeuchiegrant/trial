@@ -8,9 +8,14 @@ class GitAutoMerger
 {
     public function merge_to_sale_dev($branch)
     {
+        $sale_dev = '_sale_dev';
+
+        if ($branch === $sale_dev || $branch === 'master') {
+            return false;
+        }
+
         $path_to_kozuchi_repo = '.';
         $repo = Git::open($path_to_kozuchi_repo);
-        $sale_dev = '_sale_dev';
         $active_branch = $repo->active_branch();
         $local_branches = $repo->list_branches();
         $remote_branches = $repo->list_remote_branches();
@@ -73,5 +78,5 @@ class GitAutoMerger
 }
 
 $gam = new GitAutoMerger();
-$gam->merge_to_sale_dev('branch');
+$gam->merge_to_sale_dev('_sale_dev');
 ?>
