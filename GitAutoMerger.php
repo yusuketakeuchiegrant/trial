@@ -48,7 +48,11 @@ class GitAutoMerger
         $repo->checkout($sale_dev);
 
         // Merge $branch to sale_dev
-        $merge_result = $repo->merge($branch);
+        try {
+            $merge_result = $repo->merge($branch);
+        } catch(Exception $e) {
+            $repo->reset();
+        }
         var_dump($merge_result);
         $result = false;
         // If conflicted
