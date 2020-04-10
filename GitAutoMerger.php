@@ -58,6 +58,7 @@ class GitAutoMerger
             $result = true;
         } catch(Exception $e) {
             $repo->reset('HEAD', 'hard');
+            var_dump($e);
             $result = false;
         } finally {
             // Finally, delete $branch
