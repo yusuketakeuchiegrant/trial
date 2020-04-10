@@ -38,7 +38,7 @@ class GitAutoMerger
 
         // Checkout $branch from remote branch
         if (in_array($branch, $remote_branches)) {
-            // TODO: Checkout $branch from remote branch
+            $repo->checkout_remote($branch);
         } else {
             throw new Exception(sprintf('The branch %s not found', $branch));
         }
