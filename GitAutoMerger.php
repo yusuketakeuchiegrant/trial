@@ -78,5 +78,5 @@ var_dump($remote_branches);
 }
 
 $gam = new GitAutoMerger();
-$gam->merge_to_sale_dev('_sale_dev');
+$gam->merge_to_sale_dev('branch');
 ?>
