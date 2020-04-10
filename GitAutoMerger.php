@@ -20,6 +20,7 @@ class GitAutoMerger
         $local_branches = $repo->list_branches();
         $remote_branches = $repo->list_remote_branches();
 
+        // Checkout sale_dev
         if ($active_branch !== $sale_dev) {
             if (in_array($sale_dev, $local_branches)) {
                 $repo->checkout($sale_dev);
@@ -30,6 +31,9 @@ class GitAutoMerger
                 $repo->checkout_remote($sale_dev);
             }
         }
+
+        // Update sale_dev
+        $repo->pull('origin', $sale_dev);
 
         // If $branch exists, delete it
         if (in_array($branch, $local_branches)) {
@@ -78,5 +82,5 @@ class GitAutoMerger
 }
 
 $gam = new GitAutoMerger();
-$gam->merge_to_sale_dev('_sale_dev');
+$gam->merge_to_sale_dev('branch');
 ?>

@@ -646,7 +646,7 @@ class GitRepo {
      *
      * Accepts the name of the remote and local branch.
          * If omitted, the command will be "git push", and therefore will take 
-         * on the behavior of your "push.defualt" configuration setting.
+         * on the behavior of your "push.default" configuration setting.
      *
      * @param string $remote
      * @param string $branch
@@ -673,9 +673,19 @@ class GitRepo {
     }
 
     /**
+     * @param string $option mixed, soft or hard
+     * @param string $commit Like HEAD or HEAD^
+     */
+    public function reset($commit, $option='mixed') {
+        $command = sprintf('reset --%s $s', $option, $commit);
+        $command = escapeshellarg($command);
+        return $this->run($command);
+    }
+
+    /**
      * List log entries.
      *
-     * @param strgin $format
+     * @param string $format
      * @return string
      */
     public function log($format = null, $fulldiff=false, $filepath=null, $follow=false) {
