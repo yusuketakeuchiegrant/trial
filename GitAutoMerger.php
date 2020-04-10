@@ -51,6 +51,9 @@ class GitAutoMerger
         $result = false;
         try {
             $repo->merge($branch);
+            $message = sprintf('Merge %s to %s', $branch, $sale_dev);
+            $repo->commit($message);
+            $repo->push('origin', $sale_dev);
             $result = true;
         } catch(Exception $e) {
             $repo->reset('HEAD', 'hard');
