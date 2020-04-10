@@ -19,6 +19,7 @@ class GitAutoMerger
         $active_branch = $repo->active_branch();
         $local_branches = $repo->list_branches();
         $remote_branches = $repo->list_remote_branches();
+var_dump($repo->test_git());
 
         if ($active_branch !== $sale_dev) {
             if (in_array($sale_dev, $local_branches)) {
