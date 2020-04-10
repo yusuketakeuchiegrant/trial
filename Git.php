@@ -575,7 +575,6 @@ class GitRepo {
      */
     public function checkout_remote($branch) {
         $command = sprintf('checkout -b %s origin/%s', $branch, $branch);
-        $command = escapeshellarg($command);
         return $this->run($command);
     }
 
