@@ -37,8 +37,7 @@ class GitAutoMerger
         }
 
         // Checkout $branch from remote branch
-        $remote_template = 'origin/%s';
-        $remote_branch = sprintf($remote_template, $branch);
+        $remote_branch = sprintf('origin/%s', $branch);
         if (in_array($remote_branch, $remote_branches)) {
             $repo->checkout_remote($branch);
         } else {
@@ -47,8 +46,7 @@ class GitAutoMerger
 
         // Checkout sale_dev and update.
         $repo->checkout($sale_dev);
-        $sale_dev_remote = sprintf($remote_template, $sale_dev);
-        $repo->pull($sale_dev_remote, $sale_dev);
+        $repo->pull('origin', $sale_dev);
 
         // Merge $branch to sale_dev
         $result = false;
