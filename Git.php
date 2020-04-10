@@ -673,6 +673,16 @@ class GitRepo {
     }
 
     /**
+     * @param string $option mixed, soft or hard
+     * @param string $commit Like HEAD or HEAD^
+     */
+    public function reset($commit, $option='mixed') {
+        $command = sprintf('reset --%s $s', $option, $commit);
+        $command = escapeshellarg($command);
+        return $this->run($command);
+    }
+
+    /**
      * List log entries.
      *
      * @param strgin $format
