@@ -56,7 +56,7 @@ class GitAutoMerger
             var_dump($merge_result);
         } catch(Exception $e) {
             var_dump($merge_result);
-            $repo->reset('hard', 'HEAD');
+            $repo->reset('HEAD', 'hard');
             $result = false;
         }
 
