@@ -44,6 +44,9 @@ class GitAutoMerger
             throw new Exception(sprintf('The branch %s not found', $remote_branch));
         }
 
+        // Checkout sale_dev to merge.
+        $repo->checkout($sale_dev);
+
         // Merge $branch to sale_dev
         $merge_result = $repo->merge($branch);
         var_dump($merge_result);
