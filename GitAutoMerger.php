@@ -37,14 +37,22 @@ class GitAutoMerger
         }
 
         // Checkout $branch from remote branch
-        if (in_array($branch, $remote_branches)) {
-            // TODO: Checkout $branch from remote branch
+        $remote_branch = sprintf('origin/%s', $branch);
+        if (in_array($remote_branch, $remote_branches)) {
+            $repo->checkout_remote($branch);
         } else {
-            throw new Exception(sprintf('The branch %s not found', $branch));
+            throw new Exception(sprintf('The branch %s not found', $remote_branch));
         }
 
+        // Checkout sale_dev to merge.
+        $repo->checkout($sale_dev);
+
         // Merge $branch to sale_dev
-        $merge_result = $repo->merge($branch);
+        try {
+            $merge_result = $repo->merge($branch);
+        } catch(Exception $e) {
+            $repo->reset();
+        }
         var_dump($merge_result);
         $result = false;
         // If conflicted
