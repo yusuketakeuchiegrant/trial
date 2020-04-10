@@ -66,7 +66,7 @@ class GitAutoMerger
         return $result;
     }    
 }
-
+// Conflict
 $gam = new GitAutoMerger();
 $gam->merge_to_sale_dev('branch');
 ?>
